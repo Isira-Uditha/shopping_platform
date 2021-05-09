@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import {
+    loadCurrentItem,
+    addToCart,
+} from "../../../actions/shopping-actions";
 
 
 import { deletePost, likePost } from '../../../actions/posts';
@@ -49,7 +53,7 @@ const Post = ({ post, setCurrentId}) => {
             )}
             <CardActions className={classes.cardActions}>
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.item}</Typography>
-                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => {}}>Add To Cart</Button>
+                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => addToCart(post._id)}>Add To Cart</Button>
             </CardActions>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>

@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState } from 'react';
 import { Link,useHistory, useLocation } from 'react-router-dom';
 import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
 import useStyles from './styles';
+import styles from "./Navbar.module.css";
 import memories from "../../images/memories.png";
 import decode from 'jwt-decode';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as actionType from '../../constants/actionTypes';
 
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    const cart = useSelector((state) => state.cart)
     const classes = useStyles();
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
+
+    const [cartCount, setCartCount] = useState(0);
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
@@ -32,7 +37,14 @@ const Navbar = () => {
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
+
+
+
+
     }, [location]);
+
+
+
 
     return (
         <div className={classes.appBar} position="static" color="inherit">
@@ -55,6 +67,19 @@ const Navbar = () => {
                     ) : (
                         <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
                     )}
+
+                    <Link to="/cart">
+                        <div className={styles.navbar__cart}>
+                            <h3 className={styles.cart__title}>Cart</h3>
+                            <img
+                                className={styles.cart__image}
+                                src="https://image.flaticon.com/icons/svg/102/102276.svg"
+                                alt="shopping cart"
+                            />
+                            <div className={styles.cart__counter}>{cartCount}</div>
+                        </div>
+                    </Link>
+
                 </Toolbar>
             </AppBar>
         </div>
