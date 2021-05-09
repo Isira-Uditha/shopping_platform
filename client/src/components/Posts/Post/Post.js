@@ -1,17 +1,19 @@
 import React from "react";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from "moment";
 import { useDispatch } from 'react-redux';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
 
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId}) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -21,19 +23,19 @@ const Post = ({ post, setCurrentId }) => {
         if (post.like.length > 0) {
             return post.like.find((like) => like === (user?.result?.googleId || user?.result?._id))
                 ? (
-                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.like.length > 2 ? `You and ${post.like.length - 1} others` : `${post.like.length} like${post.like.length > 1 ? 's' : ''}` }</>
+                    <><FavoriteIcon fontSize="small" />&nbsp;{post.like.length > 2 ? `You and ${post.like.length - 1} others` : `${post.like.length} Favorite${post.like.length > 1 ? 's' : ''}` }</>
                 ) : (
-                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.like.length} {post.like.length === 1 ? 'Like' : 'Likes'}</>
+                    <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;{post.like.length} {post.like.length === 1 ? 'Favorite' : 'Favorites'}</>
                 );
         }
 
-        return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+        return <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;Favorite</>;
     };
 
 
     return (
         <Card className={classes.card}>
-            <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
+            <CardMedia className={classes.media} image={post.selectedFile} title={post.item}/>
             <div className={classes.overlay}>
                 <Typography variant="h6">{post.name}</Typography>
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
@@ -45,12 +47,15 @@ const Post = ({ post, setCurrentId }) => {
                     </Button>
                 </div>
             )}
+            <CardActions className={classes.cardActions}>
+            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.item}</Typography>
+                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => {}}>Add To Cart</Button>
+            </CardActions>
             <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
+                <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>
             </div>
-            <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component={"p"}>{post.message}</Typography>
+                <Typography variant="body2" color="textSecondary" component={"p"}>{post.description}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
