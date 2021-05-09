@@ -1,9 +1,9 @@
-import PostMessage from "../models/postMessage.js";
+import Item from "../models/item.js";
 import mongoose from "mongoose";
 
 export const getPosts = async (req,res) => {
     try {
-        const postMessages = await PostMessage.find();
+        const postMessages = await Item.find();
         res.status(200  ).json(postMessages);
     }catch (error){
         res.status(404).json({ message: error });
@@ -13,7 +13,7 @@ export const getPosts = async (req,res) => {
 export const createPost = (req,res) => {
 
     const post = req.body;
-    const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+    const newPostMessage = new Item({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
 
     try {
         newPostMessage.save();
@@ -30,7 +30,7 @@ export const updatePost =  async (req,res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Post With That id');
 
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post,{new : true});
+    const updatedPost = await Item.findByIdAndUpdate(_id, post,{new : true});
 
     res.json(updatedPost);
 
@@ -41,7 +41,7 @@ export const deletePost = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    await PostMessage.findByIdAndRemove(id);
+    await Item.findByIdAndRemove(id);
 
     res.json({ message: "Post deleted successfully." });
 }
@@ -55,7 +55,7 @@ export const likePost = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const post = await PostMessage.findById(id);
+    const post = await Item.findById(id);
 
     const index = post.like.findIndex((id) => id ===String(req.userId));
 
@@ -65,7 +65,7 @@ export const likePost = async (req, res) => {
         post.like = post.like.filter((id) => id !== String(req.userId));
     }
 
-    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+    const updatedPost = await Item.findByIdAndUpdate(id, post, { new: true });
 
     res.json(updatedPost);
 }

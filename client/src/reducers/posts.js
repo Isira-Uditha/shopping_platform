@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, ADD_TO_CART } from '../constants/actionTypes';
 export default (posts = [], action) => {
     switch (action.type) {
         case UPDATE:

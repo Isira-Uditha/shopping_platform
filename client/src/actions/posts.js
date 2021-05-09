@@ -1,5 +1,5 @@
 
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, ADD_TO_CART } from '../constants/actionTypes';
 import * as api from '../api';
 
 //Action Creators
@@ -53,4 +53,13 @@ export const likePost = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error.message);
     }
+};
+
+export const addToCart = (itemID) => {
+    return {
+        type: ADD_TO_CART,
+        payload: {
+            id: itemID,
+        },
+    };
 };

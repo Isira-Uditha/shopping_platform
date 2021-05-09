@@ -9,19 +9,19 @@ export default makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '10px 50px',
+        padding: '10px 10px',
     },
     heading: {
-        color: 'rgba(0,183,255, 1)',
+        color: 'rgba(0,283,355, 1)',
         textDecoration: 'none',
     },
     image: {
-        marginLeft: '15px',
+        marginLeft: '0px',
     },
     toolbar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        width: '400px',
+        width: '600px',
     },
     profile: {
         display: 'flex',
