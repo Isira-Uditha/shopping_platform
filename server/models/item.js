@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const postSchema = mongoose.Schema({
-    title: String,
-    message: String,
-    name: String,
+const itemSchema = mongoose.Schema({
+    item: String,
+    description: String,
+    price: String,
     creator: String,
-    tags: String,
     selectedFile: String,
     like: {
         type: [String],
@@ -17,6 +16,6 @@ const postSchema = mongoose.Schema({
     },
 });
 
-const PostMessage = mongoose.model('postMessage', postSchema);
+const Item = mongoose.model('Item', itemSchema);
 
-export default PostMessage;
+export default Item;

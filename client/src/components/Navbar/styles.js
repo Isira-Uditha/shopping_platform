@@ -1,25 +1,43 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
 
-export default makeStyles((theme) =>({
+export default makeStyles((theme) => ({
     appBar: {
         borderRadius: 15,
         margin: '30px 0',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        padding: '10px 10px',
     },
     heading: {
-        color: 'rgba(0,183,255, 1)',
+        color: 'rgba(0,283,355, 1)',
+        textDecoration: 'none',
     },
     image: {
-        marginLeft: '15px',
+        marginLeft: '0px',
     },
-    [theme.breakpoints.down('sm')]:{
-        mainContainer :{
-            flexDirection : "column-reverse"
-        }
-
-    }
-
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '600px',
+    },
+    profile: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '400px',
+    },
+    userName: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    brandContainer: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    purple: {
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
+    },
 }));
