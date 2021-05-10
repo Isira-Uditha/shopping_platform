@@ -12,9 +12,7 @@ import { connect } from "react-redux";
 const Navbar = ({cart}) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-
-
-
+    // const cart = useSelector((state) => state.cart)
     const classes = useStyles();
     const dispatch = useDispatch();
     const location = useLocation();
@@ -55,7 +53,8 @@ const Navbar = ({cart}) => {
         setCartCount(count);
     }, [cart, cartCount]);
 
-console.log("cartCount"+cartCount);
+
+
 
     return (
         <div className={classes.appBar} position="static" color="inherit">

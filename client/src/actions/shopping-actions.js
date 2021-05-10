@@ -1,25 +1,28 @@
-import * as actionTypes from "../constants/shopping-types";
-import * as api from "../api";
-import {FETCH_ALL} from "../constants/actionTypes";
+import { ADD_TO_CART, REMOVE_FROM_CART, ADJUST_ITEM_QTY, LOAD_CURRENT_ITEM } from "../constants/shopping-types";
 
-export const addToCart = (itemID) => (dispatch)=>{
+
+export const addToCart = (itemID) => async (dispatch) =>{
+    // console.log(itemID);
     console.log('inside add to cart');
 
-
         try{
-
-            dispatch({type: actionTypes.ADD_TO_CART, payload: itemID});
-
-        }catch(error) {
+            console.log('xxxx');
+            dispatch({ type: ADD_TO_CART, payload: itemID });
+        }catch(error){
             console.log(error);
         }
 
+
+        // type: actionTypes.ADD_TO_CART,
+        // payload: {
+        //     id: itemID,
+        // },
 
 };
 
 export const removeFromCart = (itemID) => {
     return {
-        type: actionTypes.REMOVE_FROM_CART,
+        type: REMOVE_FROM_CART,
         payload: {
             id: itemID,
         },
@@ -28,7 +31,7 @@ export const removeFromCart = (itemID) => {
 
 export const adjustItemQty = (itemID, qty) => {
     return {
-        type: actionTypes.ADJUST_ITEM_QTY,
+        type: ADJUST_ITEM_QTY,
         payload: {
             id: itemID,
             qty,
@@ -38,7 +41,7 @@ export const adjustItemQty = (itemID, qty) => {
 
 export const loadCurrentItem = (item) => {
     return {
-        type: actionTypes.LOAD_CURRENT_ITEM,
+        type: LOAD_CURRENT_ITEM,
         payload: item,
     };
 };
