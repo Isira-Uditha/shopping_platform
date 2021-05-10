@@ -7,11 +7,14 @@ import memories from "../../images/memories.png";
 import decode from 'jwt-decode';
 import {useDispatch, useSelector} from 'react-redux';
 import * as actionType from '../../constants/actionTypes';
+import { connect } from "react-redux";
 
-const Navbar = () => {
+const Navbar = ({cart}) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const cart = useSelector((state) => state.cart)
+
+
+
     const classes = useStyles();
     const dispatch = useDispatch();
     const location = useLocation();
@@ -43,8 +46,16 @@ const Navbar = () => {
 
     }, [location]);
 
+    useEffect(() => {
+        let count = 0;
+        cart.forEach((item) => {
+            count += item.qty;
+        });
 
+        setCartCount(count);
+    }, [cart, cartCount]);
 
+console.log("cartCount"+cartCount);
 
     return (
         <div className={classes.appBar} position="static" color="inherit">
@@ -87,4 +98,14 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    return {
+        cart: state.shop.cart,
+
+
+    };
+};
+
+
+//export default Navbar;
+export default connect(mapStateToProps)(Navbar);
