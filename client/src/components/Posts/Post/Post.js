@@ -53,7 +53,7 @@ const Post = ({ post, setCurrentId}) => {
             )}
             <CardActions className={classes.cardActions}>
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.item}</Typography>
-                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => addToCart(post._id)}>Add To Cart</Button>
+                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => dispatch(addToCart(post._id))}>Add To Cart</Button>
             </CardActions>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>
