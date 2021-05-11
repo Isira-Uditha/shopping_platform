@@ -5,8 +5,8 @@ import * as actionTypes from "../constants/shopping-types";
 
 export default (posts = [], action) => {
 
-    const INITIAL_STATE = {posts , cart : [] ,  currentItem: null,};
-    // console.log(action.type);
+    // const INITIAL_STATE = {posts , cart : [] ,  currentItem: null,};
+
     switch (action.type) {
         case UPDATE:
         case LIKE:
@@ -14,9 +14,10 @@ export default (posts = [], action) => {
         case FETCH_ALL:
             return action.payload;
         case CREATE:
+            console.log(posts);
             return [...posts, action.payload];
         case DELETE:
-            console.log(posts.filter((post) => post._id !== action.payload));
+
             return posts.filter((post) => post._id !== action.payload);
         default:
             return posts;

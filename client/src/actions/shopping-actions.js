@@ -1,13 +1,16 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, ADJUST_ITEM_QTY, LOAD_CURRENT_ITEM } from "../constants/shopping-types";
+import * as api from "../api";
 
 
-export const addToCart = (itemID) => async (dispatch) =>{
-    // console.log(itemID);
-    console.log('inside add to cart');
+export const addToCart = (item) => async (dispatch) =>{
+
+    console.log(item);
 
         try{
-            console.log('xxxx');
-            dispatch({ type: ADD_TO_CART, payload: itemID });
+            dispatch({
+                type: ADD_TO_CART,
+                payload: item
+            });
         }catch(error){
             console.log(error);
         }
