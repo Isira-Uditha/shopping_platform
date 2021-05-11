@@ -11,13 +11,15 @@ import {
     loadCurrentItem,
     addToCart,
 } from "../../../actions/shopping-actions";
+import styles from "./Post.module.css";
+import { Link } from "react-router-dom";
 
 
 import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
 
 
-const Post = ({ post, setCurrentId}) => {
+const Post = ({ post, setCurrentId , loadCurrentItem}) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -52,11 +54,23 @@ const Post = ({ post, setCurrentId}) => {
                 </div>
             )}
             <CardActions className={classes.cardActions}>
+
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.item}</Typography>
-                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => dispatch(addToCart(post._id))}>Add To Cart</Button>
+                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => dispatch(addToCart(post))}>Add To Cart</Button>
+
             </CardActions>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>
+                <div className={styles.product__buttons}>
+                    <Link to={`/product/${post._id}`}>
+                        <button
+                            onClick={() => loadCurrentItem(post)}
+                            className={`${styles.buttons__btn} ${styles.buttons__view}`}
+                        >
+                            View Item
+                        </button>
+                    </Link>
+                </div>
             </div>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component={"p"}>{post.description}</Typography>
@@ -76,4 +90,10 @@ const Post = ({ post, setCurrentId}) => {
     );
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+        loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
+    };
+};
 export default Post;
