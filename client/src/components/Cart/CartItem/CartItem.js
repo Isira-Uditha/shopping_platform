@@ -7,16 +7,30 @@ import {
     adjustItemQty,
     removeFromCart,
 } from "../../../actions/shopping-actions"
-const CartItem = ({itemData}) => {
+const CartItem = ({itemData , removeFromCart , adjustQty }) => {
 
+    const [input, setInput] = useState(itemData.qty);
+
+
+    const onChangeHandler = (e) => {
+       console.log(e.target.value);
+        setInput(e.target.value);
+       adjustQty(itemData._id, e.target.value);
+    };
 
     return (
         <div className={styles.cartItem}>
 
+            <img
+                className={styles.cartItem__image}
+                src={itemData.selectedFile}
+                alt={itemData.item}
+            />
+
             <div className={styles.cartItem__details}>
                 <p className={styles.details__title}>  {itemData.item}</p>
                 <p className={styles.details__desc}>{itemData.description}</p>
-                <p className={styles.details__price}>${itemData.price} </p>
+                <p className={styles.details__price}>Rs.{itemData.price} </p>
             </div>
             <div className={styles.cartItem__actions}>
                 <div className={styles.cartItem__qty}>
@@ -26,11 +40,22 @@ const CartItem = ({itemData}) => {
                         type="number"
                         id="qty"
                         name="qty"
-                        value = {itemData.qty}
+                        value = {input}
+                        onChange={onChangeHandler}
 
 
                     />
                 </div>
+
+                <button
+                    onClick={() => removeFromCart(itemData._id)}
+                    className={styles.actions__deleteItemBtn}
+                >
+                    <img
+                        src="https://image.flaticon.com/icons/svg/709/709519.svg"
+                        alt=""
+                    />
+                </button>
 
             </div>
         </div>
