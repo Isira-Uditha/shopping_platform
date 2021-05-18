@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
+import orderRoutes from './routes/orders.js';
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
+app.use('/order', orderRoutes);
 
 app.get('/', (req,res) => {
    res.send('Hello to Memory API')

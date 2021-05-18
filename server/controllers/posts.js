@@ -1,4 +1,5 @@
 import Item from "../models/item.js";
+import Order from "../models/Order.js";
 import mongoose from "mongoose";
 
 export const getPosts = async (req,res) => {
@@ -12,6 +13,7 @@ export const getPosts = async (req,res) => {
 
 export const createPost = (req,res) => {
 
+    console.log("Inside posts in Controller");
     const post = req.body;
     const newPostMessage = new Item({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
 
@@ -70,3 +72,20 @@ export const likePost = async (req, res) => {
     res.json(updatedPost);
 }
 
+export const createOrder = (req,res) => {
+
+
+    console.log("Inside order in Controller");
+
+    const order = req.body;
+    console.log(order);
+    const newOrder = new Order({ ...order, creator: req.userId, createdAt: new Date().toISOString() })
+
+    try {
+        newOrder.save();
+
+        res.status(201).json(newOrder);
+    }catch (error){
+        res.status(409).json({ message: error });
+    }
+}

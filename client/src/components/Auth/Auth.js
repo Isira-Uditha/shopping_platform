@@ -84,6 +84,9 @@ const Auth = () => {
                     )
                 }
                 <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                { isSignup &&
+                <Input name="address" label="Postal Address" handleChange={handleChange} type="text" />
+                }
                 <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
                 { isSignup &&
                     <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
