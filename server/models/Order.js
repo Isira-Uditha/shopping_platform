@@ -10,6 +10,7 @@ const orderSchema = mongoose.Schema({
         default: []
     },
     cardNumber : String,
+    mobileNumber : String,
     eDate : String,
     cvc : String,
     cardName : String,
