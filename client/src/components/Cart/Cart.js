@@ -131,10 +131,10 @@ const Cart = ({ cart }) => {
                 ))}
             </div>
             <div className={styles.cart__summary}>
-                <h4 className={styles.summary__title}>Cart Summary</h4>
+                <center><h4 className={styles.summary__title} style={{fontFamily: "Arial",color:"#3f51b5"}}>Cart Summary</h4></center>
                 <div className={styles.summary__price}>
-                    <span>TOTAL: ({totalItems} items)</span>
-                    <span>Rs {totalPrice}</span>
+                    <span style={{fontFamily: "Arial",color:"#3f51b5"}}>TOTAL: ({totalItems} items)</span>
+                    <span style={{fontFamily: "Arial",color:"#3f51b5"}}>Rs {totalPrice}</span>
                 </div>
                 <br/><br/>
                 {
@@ -214,6 +214,7 @@ const Cart = ({ cart }) => {
                 <Button variant="contained" type="submit" color="primary" >
                     Proceed To Checkout
                 </Button>
+                <br/>
             </div>
         </div>
         </form>
