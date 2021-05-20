@@ -67,21 +67,21 @@ const Navbar = ({cart, removeFromCart}) => {
     return (
         <div className={classes.appBar} position="static" color="inherit">
             <AppBar className={classes.appBar} position="static">
-                <Typography component={Link} to="/" className={classes.heading} variant="h3" align="center">Shopping Platform</Typography>
+                <Typography component={Link} to="/" className={classes.heading} variant="h3" align="center">&nbsp;Shopping Platform</Typography>
                 <img className={classes.image} src={memories} alt="memories" height="60" />
                 <Toolbar className={classes.toolbar}>
                     {user?.result ? (
                         <div className={classes.profile}>
-                            <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>
+                            <Avatar className={classes.purple} style={{marginTop: "12px"}} alt={user?.result.name} src={user?.result.imageUrl}>
                                 {user?.result.name.charAt(0)}
                             </Avatar>
                             <Typography className={classes.userName} variant="h6">
                                 {user?.result.name}
                             </Typography>
-                            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>
+                            <Button variant="contained" className={classes.logout} style={{height: "50px",marginTop: "8px"}} color="secondary" onClick={logout}>
                                 Logout
                             </Button>
-                            <Link to="/cart">
+                            <Button component={Link} to="/cart" >
                                 <div className={styles.navbar__cart}>
                                     <h3 className={styles.cart__title}>Cart</h3>
                                     <img
@@ -91,10 +91,10 @@ const Navbar = ({cart, removeFromCart}) => {
                                     />
                                     <div className={styles.cart__counter}>{cartCount}</div>
                                 </div>
-                            </Link>
+                            </Button>
                         </div>
                     ) : (
-                        <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                        <Button component={Link} to="/auth"  variant="contained" color="primary">Sign In</Button>
                     )}
                 </Toolbar>
             </AppBar>

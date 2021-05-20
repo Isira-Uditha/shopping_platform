@@ -7,15 +7,17 @@
 }
 
 .navbar__cart {
-    background: #fff;
-    width: 180px;
+    background: #05f172;
+    width: 160px;
+    height: 30px;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.8rem;
     cursor: pointer;
+    color : #076fba;
 }
 
 .navbar__cart:hover {
@@ -23,24 +25,22 @@
 }
 
 .cart__title {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 
 }
 
 .cart__image {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     object-fit: contain;
 }
 
 .cart__counter {
-    height: 40px;
-    width: 40px;
-    border: 1px solid ;
+    height: 35px;
+    width: 35px;
+    border: 2px solid ;
     border-radius: 50%;
-
-
     font-size: 25px;
     display: flex;
     justify-content: center;

@@ -14,7 +14,8 @@ const initialState = {
     cardName: '',
     cardNumber: '',
     cvc: '',
-    eDate: ''
+    eDate: '',
+    mobileNumber: ''
 };
 
 
@@ -104,7 +105,8 @@ const Cart = ({ cart }) => {
         const cardNumber = formData["cardNumber"];
         const mobileNumber = formData["mobileNumber"];
 
-        dispatch(createOrder({ cart, totalItems, totalPrice,name: user?.result?.name ,email: user?.result?.email,address: user?.result?.address,cardNumber, eDate, cvc, cardName, mobileNumber}));
+        const result = dispatch(createOrder({ cart, totalItems, totalPrice,name: user?.result?.name ,email: user?.result?.email,address: user?.result?.address,cardNumber, eDate, cvc, cardName, mobileNumber}));
+        console.log(result);
         history.push('/');
         Swal.fire(
             'Order Placed!',
