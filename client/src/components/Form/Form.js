@@ -2,13 +2,12 @@ import React, { useState, useEffect  } from "react";
 import { TextField, Button, Typography, Paper} from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from 'react-redux';
-
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts.js';
 
 
 const Form = ( {currentId, setCurrentId}) => {
-    const [postData, setPostData] = useState({title: '',message:'',tags:'',selectedFile:''});
+    const [postData, setPostData] = useState({item: '',description:'',price:'',selectedFile:''});
     const classes = useStyles();
     const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
@@ -18,23 +17,27 @@ const Form = ( {currentId, setCurrentId}) => {
         if (post) setPostData(post);
     }, [post]);
 
+    //Clear the form input fields
     const clear = () => {
         setCurrentId(0);
-        setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+        setPostData({ item: '', description: '', price: '', selectedFile: '' });
     };
 
+    //Create or Update an item post
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!currentId) {
+            //If the current id of the post is not available, create a new item post
             dispatch(createPost({ ...postData, name: user?.result?.name }));
             clear();
         } else {
+            //If the current id is available update the existing item post
             dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
             clear();
         }
     };
 
+    //Disappearing the form if user is not sign in
     if (!user?.result?.name) {
         return (
             <Paper className={classes.paper}>
@@ -50,10 +53,10 @@ const Form = ( {currentId, setCurrentId}) => {
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{currentId ? `Editing ${post.title}` : 'Creating a Memory'}</Typography>
-                <TextField name={"title"} variant={"outlined"} label={"Title"} fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value})}/>
-                <TextField name={"message"} variant={"outlined"} label={"Message"} fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value})}/>
-                <TextField name={"tags"} variant={"outlined"} label={"Tags"} fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',')})}/>
+                <Typography variant="h6">{currentId ? `Editing ${post.item} Item` : 'Add Items'}</Typography>
+                <TextField name={"item"} variant={"outlined"} label={"Item Name"} fullWidth value={postData.item} onChange={(e) => setPostData({ ...postData, item: e.target.value})}/>
+                <TextField name={"description"} variant={"outlined"} label={"Description"} fullWidth value={postData.description} onChange={(e) => setPostData({ ...postData, description: e.target.value})}/>
+                <TextField name={"price"} variant={"outlined"} label={"Price"} fullWidth value={postData.price} onChange={(e) => setPostData({ ...postData, price: e.target.value})}/>
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({base64}) => setPostData({ ...postData, selectedFile: base64})}/></div>
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" type="submit" onClick={clear} fullWidth>Clear</Button>
