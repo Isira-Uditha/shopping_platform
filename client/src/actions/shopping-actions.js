@@ -1,28 +1,16 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, ADJUST_ITEM_QTY, LOAD_CURRENT_ITEM ,  FETCH_ALL1 } from "../constants/shopping-types";
-import * as api from "../api";
-import {FETCH_ALL} from "../constants/actionTypes";
+import { ADD_TO_CART, REMOVE_FROM_CART, ADJUST_ITEM_QTY, LOAD_CURRENT_ITEM } from "../constants/shopping-types";
 
 
+//This function is used to add an item into the shopping cart
 export const addToCart = (itemID) => async (dispatch) =>{
-    // console.log(itemID);
-    console.log('inside add to cart');
-
         try{
-            console.log('xxxx');
             dispatch({ type: ADD_TO_CART, payload: itemID });
         }catch(error){
             console.log(error);
         }
-
-
-        // type: actionTypes.ADD_TO_CART,
-        // payload: {
-        //     id: itemID,
-        // },
-
 };
 
-
+//This function is used to remove an item into the shopping cart
 export const removeFromCart = (itemID) => async (dispatch) => {
    try{
        dispatch({ type: REMOVE_FROM_CART, payload: itemID });
@@ -32,6 +20,7 @@ export const removeFromCart = (itemID) => async (dispatch) => {
    }
 };
 
+//This function is used to count and display the items added to the cart
 export const adjustItemQty = (itemID, qty) => {
     return {
         type: ADJUST_ITEM_QTY,
@@ -42,13 +31,11 @@ export const adjustItemQty = (itemID, qty) => {
     };
 };
 
+//This function is used to load the added cart items into the checkout page
 export const loadCurrentItem = (item) => async (dispatch) => {
-
     try{
         dispatch({ type:LOAD_CURRENT_ITEM, payload:item});
-
     }catch(error){
         console.log(error);
     }
-
 };

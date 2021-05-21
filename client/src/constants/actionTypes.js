@@ -1,3 +1,5 @@
+//This constant file keeps all the action types
+
 export const CREATE = 'CREATE';
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';

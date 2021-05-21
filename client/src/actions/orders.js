@@ -1,11 +1,10 @@
 import * as api from "../api";
 import {CREATE_ORDER} from "../constants/actionTypes";
 
+//This function is used to create a new order
 export const createOrder = (order) => async (dispatch) =>{
     try{
-        console.log("Inside order in ACTIONS");
-        // console.log(order);
-        const { data } = await api.createOrder(order);
+        const { data } = await api.createOrder(order); //Invoke API call to create an order
         dispatch({type:CREATE_ORDER , payload:data});
 
     }catch (error) {

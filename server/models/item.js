@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//Item model
 const itemSchema = mongoose.Schema({
     item: String,
     description: String,

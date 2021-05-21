@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from "moment";
+import moment from "moment"; //to work with time and date
 import { useDispatch } from 'react-redux';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
