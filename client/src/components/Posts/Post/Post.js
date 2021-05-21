@@ -2,23 +2,26 @@ import React from "react";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from "moment";
+import moment from "moment"; //to work with time and date
 import { useDispatch } from 'react-redux';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-
+import {
+    addToCart,
+} from "../../../actions/shopping-actions";
+import styles from "./Post.module.css";
+import { Link } from "react-router-dom";
 import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
 
 
-const Post = ({ post, setCurrentId}) => {
+const Post = ({ post, setCurrentId , loadCurrentItem}) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
+    //Check whether the current user like or not for the post and handle the text appear right side of the Favourite Icon
     const Likes = () => {
         if (post.like.length > 0) {
             return post.like.find((like) => like === (user?.result?.googleId || user?.result?._id))
@@ -28,7 +31,6 @@ const Post = ({ post, setCurrentId}) => {
                     <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;{post.like.length} {post.like.length === 1 ? 'Favorite' : 'Favorites'}</>
                 );
         }
-
         return <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;Favorite</>;
     };
 
@@ -48,8 +50,10 @@ const Post = ({ post, setCurrentId}) => {
                 </div>
             )}
             <CardActions className={classes.cardActions}>
+
             <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.item}</Typography>
-                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => {}}>Add To Cart</Button>
+                <Button variant="outlined" style={{marginTop:"5px"}} size="small" onClick={() => dispatch(addToCart(post))}>Add To Cart</Button>
+
             </CardActions>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>

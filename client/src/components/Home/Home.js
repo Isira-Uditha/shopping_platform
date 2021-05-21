@@ -8,7 +8,7 @@ import {getPosts} from "../../actions/posts";
 
 const Home = () => {
 
-    const [currentId, setCurrentId] = useState(null);
+    const [currentId, setCurrentId] = useState(null);//getting a state to store the id of the current user
     const dispatch = useDispatch();
 
     useEffect(() => {

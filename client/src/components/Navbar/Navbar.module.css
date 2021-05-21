@@ -1,0 +1,48 @@
+
+
+.navbar__logo {
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar__cart {
+    background: #c2d6f1;
+    width: 160px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    cursor: pointer;
+    color : #076fba;
+}
+
+.navbar__cart:hover {
+    opacity: 0.75;
+}
+
+.cart__title {
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+.cart__image {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.cart__counter {
+    height: 35px;
+    width: 35px;
+    border: 2px solid ;
+    border-radius: 50%;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
