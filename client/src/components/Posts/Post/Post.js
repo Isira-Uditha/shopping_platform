@@ -4,17 +4,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from "moment"; //to work with time and date
 import { useDispatch } from 'react-redux';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {
-    loadCurrentItem,
     addToCart,
 } from "../../../actions/shopping-actions";
 import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
-
-
 import { deletePost, likePost } from '../../../actions/posts';
 import useStyles from './styles';
 
@@ -25,6 +21,7 @@ const Post = ({ post, setCurrentId , loadCurrentItem}) => {
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
 
+    //Check whether the current user like or not for the post and handle the text appear right side of the Favourite Icon
     const Likes = () => {
         if (post.like.length > 0) {
             return post.like.find((like) => like === (user?.result?.googleId || user?.result?._id))
@@ -34,7 +31,6 @@ const Post = ({ post, setCurrentId , loadCurrentItem}) => {
                     <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;{post.like.length} {post.like.length === 1 ? 'Favorite' : 'Favorites'}</>
                 );
         }
-
         return <><FavoriteBorderOutlinedIcon fontSize="small" />&nbsp;Favorite</>;
     };
 
@@ -61,16 +57,6 @@ const Post = ({ post, setCurrentId , loadCurrentItem}) => {
             </CardActions>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">Rs. {post.price}</Typography>
-                <div className={styles.product__buttons}>
-                    <Link to={`/product/${post._id}`}>
-                        <button
-                            onClick={() => loadCurrentItem(post)}
-                            className={`${styles.buttons__btn} ${styles.buttons__view}`}
-                        >
-                            View Item
-                        </button>
-                    </Link>
-                </div>
             </div>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component={"p"}>{post.description}</Typography>
@@ -90,10 +76,4 @@ const Post = ({ post, setCurrentId , loadCurrentItem}) => {
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-        loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
-    };
-};
 export default Post;

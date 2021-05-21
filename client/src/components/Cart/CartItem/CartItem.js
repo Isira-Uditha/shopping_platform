@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styles from "./CartItem.module.css";
-
 import { connect } from "react-redux";
 import {
-    addToCart,
     adjustItemQty,
     removeFromCart,
 } from "../../../actions/shopping-actions"
+
 const CartItem = ({itemData , removeFromCart , adjustQty }) => {
 
     const [input, setInput] = useState(itemData.qty);
 
-
+    //Incrementing the quantity of the selected item
     const onChangeHandler = (e) => {
        console.log(e.target.value);
         setInput(e.target.value);
@@ -42,8 +41,6 @@ const CartItem = ({itemData , removeFromCart , adjustQty }) => {
                         name="qty"
                         value = {input}
                         onChange={onChangeHandler}
-
-
                     />
                 </div>
 
@@ -56,7 +53,6 @@ const CartItem = ({itemData , removeFromCart , adjustQty }) => {
                         alt=""
                     />
                 </button>
-
             </div>
         </div>
     );

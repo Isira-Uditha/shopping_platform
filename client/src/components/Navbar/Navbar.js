@@ -5,22 +5,21 @@ import useStyles from './styles';
 import styles from "./Navbar.module.css";
 import memories from "../../images/memories.png";
 import decode from 'jwt-decode';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import * as actionType from '../../constants/actionTypes';
 import { connect } from "react-redux";
-import {adjustItemQty, removeFromCart} from "../../actions/shopping-actions"
+import {removeFromCart} from "../../actions/shopping-actions"
 
 const Navbar = ({cart, removeFromCart}) => {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    // const cart = useSelector((state) => state.cart)
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));//getting a state to store current user form the local Storage
     const classes = useStyles();
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
+    const [cartCount, setCartCount] = useState(0);//getting a state to store number of items in the cart
 
-    const [cartCount, setCartCount] = useState(0);
-
+    //Logout the user and end the session
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
         history.push('/auth');
@@ -42,9 +41,6 @@ const Navbar = ({cart, removeFromCart}) => {
 
         setUser(JSON.parse(localStorage.getItem('profile')));
 
-
-
-
     }, [location,cart]);
 
     useEffect(() => {
@@ -60,9 +56,6 @@ const Navbar = ({cart, removeFromCart}) => {
         }
 
     }, [cart, cartCount]);
-
-
-
 
     return (
         <div className={classes.appBar} position="static" color="inherit">

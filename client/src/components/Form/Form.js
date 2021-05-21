@@ -2,7 +2,6 @@ import React, { useState, useEffect  } from "react";
 import { TextField, Button, Typography, Paper} from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from 'react-redux';
-
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts.js';
 
@@ -18,22 +17,27 @@ const Form = ( {currentId, setCurrentId}) => {
         if (post) setPostData(post);
     }, [post]);
 
+    //Clear the form input fields
     const clear = () => {
         setCurrentId(0);
         setPostData({ item: '', description: '', price: '', selectedFile: '' });
     };
 
+    //Create or Update an item post
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!currentId) {
+            //If the current id of the post is not available, create a new item post
             dispatch(createPost({ ...postData, name: user?.result?.name }));
             clear();
         } else {
+            //If the current id is available update the existing item post
             dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
             clear();
         }
     };
 
+    //Disappearing the form if user is not sign in
     if (!user?.result?.name) {
         return (
             <Paper className={classes.paper}>

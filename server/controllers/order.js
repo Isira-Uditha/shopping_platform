@@ -32,7 +32,7 @@ export const createOrder = (req,res) => {
                 'Dear '+`${order.name}`+',\n\n' +
                 'The transaction for your order '+`${newOrder._id}`+' has been proceed for the shipment on ' +`${newOrder.createdAt}`+  '\n' +
                 '\n' +
-                'Your OTP Number'+ `${id}` +'.\n\n' +
+                'Your OTP Number '+ `${id}` +'.\n\n' +
                 'Sincerely,\n\n' +
                 'The Shoppingplatform.com team'
 
