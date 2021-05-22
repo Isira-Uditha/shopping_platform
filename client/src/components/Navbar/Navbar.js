@@ -3,7 +3,7 @@ import { Link,useHistory, useLocation } from 'react-router-dom';
 import {AppBar, Typography, Toolbar, Avatar, Button} from "@material-ui/core";
 import useStyles from './styles';
 import styles from "./Navbar.module.css";
-import memories from "../../images/memories.png";
+import groceries from "../../images/groceries.png";
 import decode from 'jwt-decode';
 import {useDispatch} from 'react-redux';
 import * as actionType from '../../constants/actionTypes';
@@ -61,7 +61,7 @@ const Navbar = ({cart, removeFromCart}) => {
         <div className={classes.appBar} position="static" color="inherit">
             <AppBar className={classes.appBar} position="static">
                 <Typography component={Link} to="/" className={classes.heading} variant="h3" align="center">&nbsp;Shopping Platform</Typography>
-                <img className={classes.image} src={memories} alt="memories" height="60" />
+                <img className={classes.image} src={groceries} alt="memories" height="60" />
                 <Toolbar className={classes.toolbar}>
                     {user?.result ? (
                         <div className={classes.profile}>
